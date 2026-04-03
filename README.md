@@ -1,5 +1,5 @@
 # IndieGala-AutoJoin
-A powerful Tampermonkey userscript for IndieGala that fully automates joining giveaways with smart and safe behavior.
+A Tampermonkey userscript for IndieGala that fully automates joining giveaways with smart and safe behavior.
 
 The script automatically scans giveaway pages and joins available entries while respecting your current balance. It features a smart balance system that instantly stops the process when entries become more expensive than your remaining points, preventing unnecessary requests.
 
@@ -14,4 +14,6 @@ Real-time logging
 
 All settings are saved locally and persist between sessions.
 
-Designed for stability and efficiency, this script helps you automate IndieGala giveaways without wasting points or triggering excessive requests.
+<img width="150" height="350" alt="image" src="https://github.com/user-attachments/assets/825c497e-df31-46bb-8ed6-c81ecd69b84c" /> 
+
+
