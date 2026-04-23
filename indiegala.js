@@ -1,7 +1,9 @@
 // ==UserScript==
 // @name         IndieGala AutoJoin PRO (SMART BALANCE + LOG)
 // @namespace    indiegala.autojoin.smart
-// @version      1.0
+// @downloadURL  https://raw.githubusercontent.com/cantthinkofanickname/IndieGala-AutoJoin/main/indiegala.js
+// @updateURL    https://raw.githubusercontent.com/cantthinkofanickname/IndieGala-AutoJoin/main/indiegala.js
+// @version      1.1
 // @match        https://www.indiegala.com/*
 // @grant        none
 // ==/UserScript==
@@ -66,7 +68,7 @@
     function isTrash(title) {
         let t = title.toLowerCase();
 
-        const dlc = [" dlc"," add-on"," addon"," expansion"," expansion pack"," extra"," content pack","background"," - "];
+        const dlc = [" dlc"," add-on"," addon"," expansion"," expansion pack"," extra"," content pack","background"];
         const ost = ["soundtrack"," ost"," music pack"];
         const trash = ["pack","bundle","edition","collection"];
 
@@ -304,9 +306,23 @@
                 });
 
                 if (res.status === 200) {
-                    stats.joined++;
-                    localBalance -= price;
-                } else stats.skipped++;
+                    let data = {};
+                    try {
+                        data = await res.json();
+                    } catch {}
+
+                    if (data && data.status === "ok" && typeof data.silver_tot !== "undefined") {
+                        localBalance = parseInt(data.silver_tot) || localBalance;
+                        stats.joined++;
+                        // log(`💰 Новый баланс (с сайта): ${localBalance}`);
+                    } else {
+                        stats.skipped++;
+                        log(`⚠️ Ответ без баланса или ошибка`);
+                    }
+
+                } else {
+                    stats.skipped++;
+                }
 
                 updateStats();
 
@@ -357,7 +373,7 @@
         loadSettings();
 
         function wait() {
-            if (!document.documentElement) return setTimeout(wait, 200);
+            if (!document.documentElement) return setTimeout(wait, 300);
             createUI();
         }
         wait();
