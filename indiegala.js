@@ -3,7 +3,7 @@
 // @namespace    indiegala.autojoin.smart
 // @downloadURL  https://raw.githubusercontent.com/cantthinkofanickname/IndieGala-AutoJoin/main/indiegala.js
 // @updateURL    https://raw.githubusercontent.com/cantthinkofanickname/IndieGala-AutoJoin/main/indiegala.js
-// @version      1.1
+// @version      1.2
 // @match        https://www.indiegala.com/*
 // @grant        none
 // ==/UserScript==
@@ -71,14 +71,17 @@
         const dlc = [" dlc"," add-on"," addon"," expansion"," expansion pack"," extra"," content pack","background"];
         const ost = ["soundtrack"," ost"," music pack"];
         const trash = ["pack","bundle","edition","collection"];
+        const NOT_DLC = ["collector","director","definitive","complete","edition", "remaster"];
 
         if (settings.skipDLC) {
             let isDLC = dlc.some(p=>t.includes(p));
-            if (!isDLC && t.includes(" - ")) {
-                let parts = t.split(" - ");
-                if (parts[1] && parts[1].length < 20) isDLC = true;
+
+            let isSafe = NOT_DLC.some(p => t.includes(p));
+
+            if (isDLC && !isSafe) {
+                log(`Skip DLC: ${title}`);
+                return true;
             }
-            if (isDLC) { log(`Skip DLC: ${title}`); return true; }
         }
 
         if (settings.skipSoundtrack && ost.some(p=>t.includes(p))) {
