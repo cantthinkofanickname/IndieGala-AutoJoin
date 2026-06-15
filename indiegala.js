@@ -3,7 +3,7 @@
 // @namespace    indiegala.autojoin.smart
 // @downloadURL  https://raw.githubusercontent.com/cantthinkofanickname/IndieGala-AutoJoin/main/indiegala.js
 // @updateURL    https://raw.githubusercontent.com/cantthinkofanickname/IndieGala-AutoJoin/main/indiegala.js
-// @version      1.6
+// @version      1.7
 // @match        https://www.indiegala.com/*
 // @grant        none
 // ==/UserScript==
@@ -68,7 +68,7 @@
     function isTrash(title) {
         let t = title.toLowerCase();
 
-        const dlc = ["pack airship","ice bastion pack","wallpaper","artbook","here be dragons","grim pack","ice bastion pack","ticket to ride: europe expansion","dlc","medieval hero - grim pack","throne of fate - cyborg","throne of fate - neon fox","throne of fate - hell demon","arcade games collection-the strangest game in the world"," dlc"," add-on"," addon"," expansion"," expansion pack"," extra", " content pack","background","m60-2000"," all champions pack","expansion pass","theatre of war 2: centauro","character","welcome pack","dungeons 3 - once upon a time","frostpunk: the rifts"];
+        const dlc = ["tiger roar","the falconeer - edge of the world","the falconeer: revolution remaster - the hunter","android exporter","pack airship","ice bastion pack","wallpaper","artbook","here be dragons","grim pack","ice bastion pack","ticket to ride: europe expansion","dlc","medieval hero - grim pack","throne of fate - cyborg","throne of fate - neon fox","throne of fate - hell demon","arcade games collection-the strangest game in the world"," dlc"," add-on"," addon","expansion","expansion pack"," extra", " content pack","background","m60-2000"," all champions pack","expansion pass","theatre of war 2: centauro","character","welcome pack","dungeons 3 - once upon a time","frostpunk: the rifts"];
         const ost = ["soundtrack"," ost"," music pack","music"];
         const trash = ["bundle","edition","collection"];
         const NOT_DLC = ["collector","director","definitive","complete","edition", "remaster"];
